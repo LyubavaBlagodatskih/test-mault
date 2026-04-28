@@ -1,0 +1,20 @@
+{
+  "step": 6,
+  "stacks": ["node"],
+  "configs": [".pre-commit-config.yaml"],
+  "hookType": "single",
+  "hookIntegration": "husky",
+  "installedAt": "2026-04-28T20:55:00Z",
+  "layers": [
+    "trailing-whitespace",
+    "end-of-file-fixer",
+    "check-yaml",
+    "check-json",
+    "check-merge-conflict",
+    "check-added-large-files",
+    "mixed-line-ending",
+    "config-validation",
+    "eslint",
+    "tests"
+  ]
+}
