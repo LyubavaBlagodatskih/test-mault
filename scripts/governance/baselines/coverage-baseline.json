@@ -1,0 +1,9 @@
+{
+  "global_minimum": 70,
+  "new_file_minimum": 80,
+  "tolerance": 0.2,
+  "perFile": {
+    "src/import-export.js": 84.62,
+    "src/config.js": 0
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "step": 8,
+  "stack": "node",
+  "deployedAt": "2026-04-28T20:55:00Z",
+  "scripts": {
+    "ironDomeRatchet": ["check-any-usage.js", "check-silent-catches.js", "check-eslint-disable.js"],
+    "risingTide": ["check-mock-tax.js"],
+    "mockQuality": ["check-adversarial-mocks.js"],
+    "buddySystem": ["verify-integration-pairing.js", "verify-behavioral-pairing.js"],
+    "supplyChain": ["check-hallucinations.js"],
+    "securityReview": ["check-security-critical.js"],
+    "dependencyHealth": ["check-circular-deps.js"],
+    "dryEnforcement": ["check-duplicate-code.js"],
+    "schemaValidation": ["check-zod-boundaries.js"],
+    "testQuality": ["check-mutation-score.js"],
+    "srpGuardrails": ["guardrails-check.js"],
+    "codeHealth": ["code-health-check.js"],
+    "coverageFortress": ["check-per-file-baseline.mjs"],
+    "testDiscipline": ["check-skipped-tests.js"],
+    "metrics": ["collect-metrics.js", "report-metrics.js"]
+  },
+  "ciJobs": ["governance", "gitleaks"],
+  "baselines": "scripts/governance/baselines/",
+  "notes": "Adapted for vanilla JS project. Several gates (mutation testing, coverage fortress) are stubs. Real implementations for: Iron Dome ratchets, Mock Tax, Buddy System, Supply Chain, SRP Guardrails, Code Health, Skipped Tests."
+}
