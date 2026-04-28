@@ -1,0 +1,36 @@
+
+# Scaffolded by Mault — do not commit
+.claude/hooks/
+
+# Node.js / TypeScript
+node_modules/
+dist/
+build/
+out/
+coverage/
+.nyc_output/
+*.tsbuildinfo
+.eslintcache
+.cache/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+.env.*
+*.env
+!.env.example
+credentials.json
+secrets.yaml
+*.pem
+*.key
+*.crt
