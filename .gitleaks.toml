@@ -1,0 +1,15 @@
+title = "todo-test gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Allowlisted paths"
+paths = [
+    '''node_modules/.*''',
+    '''package-lock\.json''',
+    '''\.env\.example''',
+    '''\.mault/.*''',
+    '''\.claude/.*''',
+    '''\.memory-layer/.*'''
+]

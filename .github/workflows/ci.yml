@@ -45,7 +45,7 @@ jobs:
           cache: 'npm'
       - run: npm ci --prefer-offline --no-audit --no-fund
       - name: Integration tests with --coverage
-        run: node --experimental-test-coverage --test tests/integration/storage-roundtrip.test.js
+        run: node --experimental-test-coverage --test tests/integration/import-export-roundtrip.test.js
 
   validate-pr-title:
     if: github.event_name == 'pull_request'
@@ -87,3 +87,58 @@ jobs:
             exit 1
           fi
           echo "Branch name valid: $BRANCH"
+
+  governance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci --prefer-offline --no-audit --no-fund
+      - name: Iron Dome — any usage
+        run: node scripts/governance/check-any-usage.js
+      - name: Iron Dome — silent catches
+        run: node scripts/governance/check-silent-catches.js
+      - name: Escape Hatch — eslint-disable
+        run: node scripts/governance/check-eslint-disable.js
+      - name: Rising Tide — Mock Tax
+        run: node scripts/governance/check-mock-tax.js
+      - name: Adversarial Mock Scan
+        run: node scripts/governance/check-adversarial-mocks.js
+      - name: Buddy System — integration pairing
+        run: node scripts/governance/verify-integration-pairing.js
+      - name: Perception Check — behavioral pairing
+        run: node scripts/governance/verify-behavioral-pairing.js
+      - name: Security Critical Gate
+        run: node scripts/governance/check-security-critical.js
+      - name: Dependency Health — circular deps
+        run: node scripts/governance/check-circular-deps.js
+      - name: DRY — duplicate code
+        run: node scripts/governance/check-duplicate-code.js
+      - name: Schema Validation — boundaries
+        run: node scripts/governance/check-zod-boundaries.js
+      - name: SRP Guardrails
+        run: node scripts/governance/guardrails-check.js
+      - name: Code Health — orphans
+        run: node scripts/governance/code-health-check.js
+      - name: Test Discipline — skipped tests
+        run: node scripts/governance/check-skipped-tests.js
+      - name: Mutation Score (stub)
+        run: node scripts/governance/check-mutation-score.js
+      - name: Coverage Fortress
+        run: node scripts/governance/check-per-file-baseline.mjs
+
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

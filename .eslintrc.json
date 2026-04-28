@@ -20,6 +20,12 @@
       }
     },
     {
+      "files": ["**/*.mjs"],
+      "parserOptions": {
+        "sourceType": "module"
+      }
+    },
+    {
       "files": ["src/import-export.js"],
       "env": {
         "browser": true,

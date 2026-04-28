@@ -1,0 +1,4 @@
+{
+  "exempt": ["src/config.js"],
+  "note": "config.js is env validation glue, not user-facing feature"
+}
