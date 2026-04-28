@@ -1,0 +1,60 @@
+# Pre-commit hook framework for todo-test (vanilla JS)
+# Run: pre-commit run --all-files
+# Install: pre-commit install (or use existing husky hook which calls this)
+
+fail_fast: false
+
+repos:
+  # =========================================================================
+  # LAYER 1: FILE HYGIENE
+  # =========================================================================
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+      - id: mixed-line-ending
+        args: ['--fix=lf']
+
+  # =========================================================================
+  # LAYER 2: CONFIG VALIDATION (Fail-First Safety)
+  # =========================================================================
+  # Validates package.json + .eslintrc.json BEFORE running heavy tools.
+  # If configs are corrupted, downstream layers fail-open silently.
+  - repo: local
+    hooks:
+      - id: config-validation
+        name: Config File Validation (Layer 0)
+        entry: bash -c 'node -e "JSON.parse(require(\"fs\").readFileSync(\"package.json\",\"utf8\"))" && node -e "JSON.parse(require(\"fs\").readFileSync(\".eslintrc.json\",\"utf8\"))"'
+        language: system
+        pass_filenames: false
+        files: '^(package\.json|\.eslintrc\.json)$'
+
+  # =========================================================================
+  # LAYER 3: LINT (auto-fix)
+  # =========================================================================
+  - repo: local
+    hooks:
+      - id: eslint
+        name: ESLint (auto-fix)
+        entry: npx eslint --fix
+        language: system
+        types: [javascript]
+        exclude: '^(node_modules/|\.husky/_/|coverage/)'
+
+  # =========================================================================
+  # LAYER 4: TESTS (fast — full suite is small)
+  # =========================================================================
+  - repo: local
+    hooks:
+      - id: tests
+        name: Run tests
+        entry: npm test
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
