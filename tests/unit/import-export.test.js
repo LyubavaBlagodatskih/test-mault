@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { serialize, parse, validateImport } = require('../src/import-export');
+const { serialize, parse, validateImport } = require('../../src/import-export');
 
 const sample = [
     { id: 1, text: 'a', completed: false },
