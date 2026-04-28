@@ -1,0 +1,12 @@
+{
+  "name": "todo-test",
+  "version": "1.0.0",
+  "description": "Небольшой todo проект для тестирования mauli",
+  "scripts": {
+    "start": "http-server . -p 3000 -o",
+    "dev": "http-server . -p 3000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
