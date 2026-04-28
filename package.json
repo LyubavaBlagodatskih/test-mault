@@ -5,9 +5,18 @@
   "scripts": {
     "check-env": "node src/config.js",
     "start": "node src/config.js && http-server . -p 3000 -o",
-    "dev": "node src/config.js && http-server . -p 3000"
+    "dev": "node src/config.js && http-server . -p 3000",
+    "lint": "eslint .",
+    "test": "find tests -name '*.test.js' -print0 | xargs -0 node --test",
+    "prepare": "husky"
   },
   "devDependencies": {
-    "http-server": "^14.1.1"
+    "eslint": "^8.57.0",
+    "http-server": "^14.1.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0"
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix"
   }
 }

@@ -1,0 +1,8 @@
+node_modules/
+.mault/
+.claude/
+.memory-layer/
+.vscode/
+mault-canary/
+mault-verify-step4.sh
+mault-verify-initialize.sh
