@@ -18,6 +18,13 @@
         "browser": true,
         "node": false
       }
+    },
+    {
+      "files": ["src/import-export.js"],
+      "env": {
+        "browser": true,
+        "node": true
+      }
     }
   ]
 }

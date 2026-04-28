@@ -7,7 +7,7 @@
     "start": "node src/config.js && http-server . -p 3000 -o",
     "dev": "node src/config.js && http-server . -p 3000",
     "lint": "eslint .",
-    "test": "node --test \"tests/**/*.test.js\"",
+    "test": "find tests -name '*.test.js' -print0 | xargs -0 node --test",
     "prepare": "husky"
   },
   "devDependencies": {
